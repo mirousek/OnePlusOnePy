@@ -1,5 +1,9 @@
 # OnePlusOnePy
 
+[![PyPI](https://img.shields.io/pypi/v/OnePlusOnePy)](https://pypi.org/project/OnePlusOnePy/)
+[![Python versions](https://img.shields.io/pypi/pyversions/OnePlusOnePy)](https://pypi.org/project/OnePlusOnePy/)
+[![License: 0BSD](https://img.shields.io/pypi/l/OnePlusOnePy)](LICENSE)
+
 A minimal Python library that computes **1 + 1**.
 
 OnePlusOnePy provides a single function, `one_plus_one()`, which returns the
@@ -13,16 +17,20 @@ covered by tests.
 
 ## Installation
 
-From the project folder (the one containing `pyproject.toml`):
+Install from [PyPI](https://pypi.org/project/OnePlusOnePy/):
 
 ```bash
-pip install .
+pip install OnePlusOnePy
 ```
 
-For development, install it in editable mode so code changes take effect
-without reinstalling:
+### From source
+
+To work on the library itself, clone the repository and install it in
+editable mode, so code changes take effect without reinstalling:
 
 ```bash
+git clone https://github.com/mirousek/OnePlusOnePy.git
+cd OnePlusOnePy
 pip install -e .
 ```
 
