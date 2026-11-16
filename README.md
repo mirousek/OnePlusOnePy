@@ -48,7 +48,7 @@ The package version is available as `oneplusone.__version__`:
 ```python
 import oneplusone
 
-print(oneplusone.__version__)  # 1.0.0
+print(oneplusone.__version__)  # 1.0.1
 ```
 
 ## API reference
@@ -118,7 +118,7 @@ while the importable package is `oneplusone` (what you `import`).
 ## Versioning
 
 The project follows [Semantic Versioning](https://semver.org). The current
-version is **1.0.0**.
+version is **1.0.1**.
 
 ## Releasing
 

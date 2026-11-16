@@ -6,7 +6,7 @@
 """
 
 __all__ = ["one_plus_one"]
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 def one_plus_one() -> int:
