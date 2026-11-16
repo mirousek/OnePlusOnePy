@@ -93,6 +93,7 @@ This runs both the unit tests in `tests/` and the examples in the docstrings
 OnePlusOnePy/
 ├── pyproject.toml          # package metadata and build/test configuration
 ├── README.md               # this file
+├── LICENSE                 # The Unlicense (public domain)
 ├── src/
 │   └── oneplusone/
 │       ├── __init__.py     # the library: one_plus_one()
@@ -111,4 +112,6 @@ version is **1.0.0**.
 
 ## License
 
-MIT
+Public domain, released under [The Unlicense](https://unlicense.org).
+You can copy, modify, distribute and use it for any purpose, with no
+conditions. See [`LICENSE`](LICENSE).
