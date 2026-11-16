@@ -93,7 +93,9 @@ This runs both the unit tests in `tests/` and the examples in the docstrings
 OnePlusOnePy/
 ├── pyproject.toml          # package metadata and build/test configuration
 ├── README.md               # this file
-├── LICENSE                 # The Unlicense (public domain)
+├── LICENSE                 # Zero-Clause BSD (0BSD)
+├── .github/workflows/
+│   └── publish.yml         # publishes releases to PyPI
 ├── src/
 │   └── oneplusone/
 │       ├── __init__.py     # the library: one_plus_one()
@@ -110,8 +112,19 @@ while the importable package is `oneplusone` (what you `import`).
 The project follows [Semantic Versioning](https://semver.org). The current
 version is **1.0.0**.
 
+## Releasing
+
+Releases are published to PyPI automatically by the
+[`publish.yml`](.github/workflows/publish.yml) workflow:
+
+1. Bump `version` in `pyproject.toml` and push.
+2. Create a GitHub release with the tag `v<version>` (e.g. `v1.0.0`).
+
+The workflow checks that the tag matches the version, runs the tests, builds
+the package and uploads it using PyPI Trusted Publishing (no API token needed).
+
 ## License
 
-Public domain, released under [The Unlicense](https://unlicense.org).
-You can copy, modify, distribute and use it for any purpose, with no
-conditions. See [`LICENSE`](LICENSE).
+[Zero-Clause BSD (0BSD)](https://opensource.org/license/0bsd). You can copy,
+modify, distribute and use it for any purpose, with or without fee, with no
+conditions — not even attribution. See [`LICENSE`](LICENSE).

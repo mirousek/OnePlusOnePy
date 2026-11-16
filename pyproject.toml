@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Computes 1 + 1."
 readme = "README.md"
 requires-python = ">=3.8"
-license = "Unlicense"
+license = "0BSD"
 license-files = ["LICENSE"]
 classifiers = [
     "Programming Language :: Python :: 3",

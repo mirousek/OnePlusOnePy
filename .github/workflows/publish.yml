@@ -1,0 +1,70 @@
+# Publishes the package to PyPI when a GitHub release is published.
+#
+# Uses PyPI Trusted Publishing (OIDC) — no API token or secret is needed.
+# One-time setup on pypi.org: Account → Publishing → Add a pending publisher:
+#   project: OnePlusOnePy, owner: mirousek, repository: OnePlusOnePy,
+#   workflow: publish.yml, environment: pypi
+#
+# Release flow: bump `version` in pyproject.toml, push, then create a GitHub
+# release with tag v<version> (e.g. v1.0.0).
+
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Test and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check tag matches package version
+        run: |
+          version=$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          if [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+            echo "::error::Release tag '${GITHUB_REF_NAME}' does not match pyproject version 'v${version}'"
+            exit 1
+          fi
+
+      - name: Run tests
+        run: |
+          python -m pip install pytest
+          python -m pytest -q
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install build twine
+          python -m build
+          python -m twine check --strict dist/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/OnePlusOnePy/
+    permissions:
+      id-token: write  # required for Trusted Publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
